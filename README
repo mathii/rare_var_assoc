@@ -1,0 +1,70 @@
+***********************************************************************
+Simulating association studies in a spatially structured population
+
+Code related to "Differential confounding of rare and common
+variants in spatially structured populations; Mathieson I, McVean G;
+Nature Genetics; 2012". Please cite this paper if you use this code
+in your own work.
+ 
+***********************************************************************
+
+REQUIREMENTS 
+
+You need to have R andd gcc installed. I have used R 2.12 and gcc version
+4.2.1 on Mac OSX. It has also been tested with R 2.13 and gcc 4.5.2 on 
+Ubuntu. I see no reason why it should't work fine on other platforms. You 
+also need the R package "RColorBrewer" installed. 
+
+COMPILING
+
+R CMD SHLIB kpop.c
+
+RUNNING
+
+All the files that end in "simulation.R" can just be run from R - either
+"R --vanilla < association_simulation.R" from the command line or 
+source("association_simulation.R") from the R prompt. They produce graphs
+and text output in the current directory. 
+
+CALLING
+
+If you don't want to run the scripts, and just want to generate haplotypes
+for your own nefarious purposes, then just do (from the R prompt): 
+
+source("association.R")
+dyn.load("kpop.so")
+gt <- simulate.genotypes(G, L, c, k, M)
+
+where:
+G: Number of independent genealogies to simulate
+L: Number of variants at each locus
+c: Number of individuals in each deme
+k: Grid size (k*k)
+M: Migration rate
+
+NROW(gt)=number of individuals (i.e. c*k*k)
+NCOL(gt)=number of variants (i.e. L*G)
+
+You may wish to use the standalone software ggs, which does the same thing, 
+available from the www.well.ox.ac.uk/~mathii/software. 
+
+FILES
+
+assocation_simulation.R: Simulates association tests under different models
+of spatial risk. Saves qq plot summaries, and inflation as a function of MAF.
+
+composite_correction_simulation.R: Shows the effect of standard corrections on
+the association tests for different models of spatial risk. In order to use 
+the mixed model implementation of Pirinen et al, you will need their software,
+installed in a sub-directory called "mm". 
+
+burden_test_simulation.R: Simulate the simple rare variant burden test of 
+Morris & Zeggini. 
+
+allele_sharing_simulation: Calculate the excess allele sharing statistic 
+described in the paper. 
+
+CONTACT
+
+iain.mathieson@well.ox.ac.uk
+www.well.ox.ac.uk/~mathii
