@@ -45,8 +45,8 @@ M: Migration rate
 NROW(gt)=number of individuals (i.e. c*k*k)
 NCOL(gt)=number of variants (i.e. L*G)
 
-You may wish to use the standalone software ggs, which does the same thing, 
-available from the www.well.ox.ac.uk/~mathii/software. 
+You may wish to use the standalone program ggs, which does the same thing, 
+available from https://github.com/mathii/ggs.
 
 FILES
 
